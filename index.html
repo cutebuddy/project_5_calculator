@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+     <style>
+        *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+body{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(45deg, #0a0a0a, #3a4452);
+}
+#outer{
+    width: 350px;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: black;
+    box-shadow: 0 10px 30px black;
+}
+#result{
+    width: 100%;
+    height: 70px;
+    padding-right: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    border: none;
+    outline: none;
+    font-size: 30px;
+    color: black;
+    background-color: #f5f5f5;
+    text-align: right;
+}
+.btn-outer{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 12px;
+}
+button{
+    height: 60px;
+    border: none;
+    border-radius: 12px;
+    font-size: 22px;
+    cursor: pointer;
+    background: #444;
+    color: #fff;
+    transition: .3s;
+}
+button:hover{
+    background: #666;
+    transform: scale(1.05);
+}
+button:active{
+    transform: scale(.95);
+}
+button:nth-child(4),
+button:nth-child(8),
+button:nth-child(12),
+button:nth-child(16){
+    background: #ff9800;
+}
+button:nth-child(8):hover,
+button:nth-child(4):hover,
+button:nth-child(12):hover,
+button:nth-child(16):hover{
+    background: #ff9800;
+}
+.equal{
+    background-color: #00c853;
+}
+.equal:hover{
+    background: #00a844;
+}
+
+
+     </style>
+</head>
+<body>
+    <div id="outer">
+        <input type="text" id="result">
+        <div class="btn-outer">
+            <button onclick="press('ac')">AC</button>
+            <button onclick="press('bs')">BS</button>
+            <button onclick="press('%')">%</button>
+            <button onclick="press('/')">/</button>
+            <button onclick="press('7')">7</button>
+            <button onclick="press('8')">8</button>
+            <button onclick="press('9')">9</button>
+            <button onclick="press('*')">*</button>
+            <button onclick="press('4')">4</button>
+            <button onclick="press('5')">5</button>
+            <button onclick="press('6')">6</button>
+            <button onclick="press('-')">-</button>
+            <button onclick="press('1')">1</button>
+            <button onclick="press('2')">2</button>
+            <button onclick="press('3')">3</button>
+            <button onclick="press('+')">+</button>
+            <button onclick="press('00')">00</button>
+            <button onclick="press('0')">0</button>
+            <button onclick="press('.')">.</button>
+            <button onclick="press('=')" class="equal">=</button>
+        </div>
+    </div>
+
+    <script>
+        let input = document.getElementById('result')
+        let buttons = document.querySelectorAll('button')
+        let string = '';
+        let arr = Array.from(buttons)
+        arr.forEach(button =>{
+            button.addEventListener("click",(e)=>{
+                if(e.target.innerHTML=="="){
+                    string = eval(string);
+                    input.value = string;
+                }
+                else if (e.target.innerHTML=="AC"){
+                string = "";
+            input.value=string;
+                }
+                else if (e.target.innerHTML=="BS"){
+                string = string.substring(0,string.length-1);
+            input.value = string;
+                }
+                else{
+                    string+=e.target.innerHTML;
+                    input.value = string;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
